@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Pesk:jar">
+    <output-path>$USER_HOME$/OneDrive/Desktop/testserver/plugins</output-path>
+    <root id="archive" name="Pesk.jar">
+      <element id="module-output" name="Pesk" />
+    </root>
+  </artifact>
+</component>
