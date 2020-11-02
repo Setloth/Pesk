@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 public class ExprBeeFlower extends SimplePropertyExpression<LivingEntity, Location> {
 
     static {
-        register(ExprBeeFlower.class, Location.class, "flower", "livingentities");
+        register(ExprBeeFlower.class, Location.class, "flower [location]", "livingentities");
     }
 
     @Override

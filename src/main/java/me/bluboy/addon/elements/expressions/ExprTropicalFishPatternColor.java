@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 public class ExprTropicalFishPatternColor extends SimplePropertyExpression<LivingEntity, SkriptColor> {
 
     static {
-        register(ExprTropicalFishPatternColor.class, SkriptColor.class, "pattern color", "livingentities");
+        register(ExprTropicalFishPatternColor.class, SkriptColor.class, "pattern colo[u]r", "livingentities");
     }
 
     @Override

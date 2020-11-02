@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 public class ExprShulkerBoxColor extends SimplePropertyExpression<Block, SkriptColor> {
 
     static {
-        register(ExprShulkerBoxColor.class, SkriptColor.class, "box color", "blocks");
+        register(ExprShulkerBoxColor.class, SkriptColor.class, "box colo[u]r", "blocks");
     }
 
     @Override
