@@ -30,7 +30,7 @@ public class ExprBeaconEntitiesRange extends SimpleExpression<LivingEntity> {
         Block b = block.getSingle(event);
         if (b == null || !(b.getState() instanceof Beacon)) return null;
         List<LivingEntity> ents = new ArrayList<>();
-        for (LivingEntity ent : ((Beacon)b).getEntitiesInRange()) {
+        for (LivingEntity ent : ((Beacon)b.getState()).getEntitiesInRange()) {
             ents.add(ent);
         }
         LivingEntity[] array = ents.toArray(new LivingEntity[0]);
