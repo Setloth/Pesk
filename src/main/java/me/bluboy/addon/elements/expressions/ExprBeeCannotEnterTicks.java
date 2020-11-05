@@ -1,5 +1,6 @@
 package me.bluboy.addon.elements.expressions;
 
+import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.entity.Bee;
@@ -11,7 +12,9 @@ import org.jetbrains.annotations.Nullable;
 public class ExprBeeCannotEnterTicks extends SimplePropertyExpression<LivingEntity, Number> {
 
     static {
-        register(ExprBeeCannotEnterTicks.class, Number.class, "cannot enter ticks", "livingentities");
+        if (Skript.classExists("org.bukkit.entity.Bee")) {
+            register(ExprBeeCannotEnterTicks.class, Number.class, "cannot enter ticks", "livingentities");
+        }
     }
 
     @Override

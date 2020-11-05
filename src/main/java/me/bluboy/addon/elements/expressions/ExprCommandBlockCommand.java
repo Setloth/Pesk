@@ -1,17 +1,19 @@
 package me.bluboy.addon.elements.expressions;
 
+import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.block.Block;
 import org.bukkit.block.CommandBlock;
-import org.bukkit.entity.TropicalFish;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 public class ExprCommandBlockCommand extends SimplePropertyExpression<Block, String> {
 
     static {
-        register(ExprCommandBlockCommand.class, String.class, "command", "blocks");
+        if (Skript.classExists("org.bukkit.block.CommandBlock")) {
+            register(ExprCommandBlockCommand.class, String.class, "command", "blocks");
+        }
     }
 
     @Override

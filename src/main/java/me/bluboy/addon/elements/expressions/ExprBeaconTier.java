@@ -1,15 +1,17 @@
 package me.bluboy.addon.elements.expressions;
 
+import ch.njol.skript.Skript;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.block.Beacon;
 import org.bukkit.block.Block;
-import org.bukkit.entity.TropicalFish;
 import org.jetbrains.annotations.Nullable;
 
 public class ExprBeaconTier extends SimplePropertyExpression<Block, Number> {
 
     static {
-        register(ExprBeaconTier.class, Number.class, "tier", "blocks");
+        if (Skript.classExists("org.bukkit.block.Beacon")) {
+            register(ExprBeaconTier.class, Number.class, "tier", "blocks");
+        }
     }
 
     @Override

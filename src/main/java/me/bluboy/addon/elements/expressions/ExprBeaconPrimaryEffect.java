@@ -1,19 +1,21 @@
 package me.bluboy.addon.elements.expressions;
 
+import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.block.Beacon;
 import org.bukkit.block.Block;
-import org.bukkit.entity.TropicalFish;
 import org.bukkit.event.Event;
-import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.Nullable;
 
 public class ExprBeaconPrimaryEffect extends SimplePropertyExpression<Block, PotionEffectType> {
     static {
-        register(ExprBeaconPrimaryEffect.class, PotionEffectType.class, "primary [potion] (e|a)ffect", "blocks");
+        if (Skript.classExists("org.bukkit.block.Beacon")) {
+            register(ExprBeaconPrimaryEffect.class, PotionEffectType.class, "primary [potion] (e|a)ffect", "blocks");
+        }
     }
+
 
     @Override
     @Nullable

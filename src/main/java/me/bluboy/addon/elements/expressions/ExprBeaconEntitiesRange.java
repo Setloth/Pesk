@@ -1,7 +1,6 @@
 package me.bluboy.addon.elements.expressions;
 
 import ch.njol.skript.Skript;
-import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
@@ -13,13 +12,15 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExprBeaconEntitiesRange extends SimpleExpression<LivingEntity> {
 
     static {
-        Skript.registerExpression(ExprBeaconEntitiesRange.class, LivingEntity.class, ExpressionType.COMBINED, "entit(ys|ies) in range of %blocks%", "%blocks%'[s] entit(ys|ies) in range");
+        if (Skript.classExists("org.bukkit.block.Beacon")) {
+            Skript.registerExpression(ExprBeaconEntitiesRange.class, LivingEntity.class, ExpressionType.COMBINED, "entit(ys|ies) in range of %blocks%", "%blocks%'[s] entit(ys|ies) in range");
+        }
     }
 
     private Expression<Block> block;
@@ -33,7 +34,7 @@ public class ExprBeaconEntitiesRange extends SimpleExpression<LivingEntity> {
         for (LivingEntity ent : ((Beacon)b.getState()).getEntitiesInRange()) {
             ents.add(ent);
         }
-        LivingEntity[] array = ents.toArray(new LivingEntity[0]);
+        LivingEntity[] array = ents.toArray(new LivingEntity[ents.size()]);
         return array;
     }
 

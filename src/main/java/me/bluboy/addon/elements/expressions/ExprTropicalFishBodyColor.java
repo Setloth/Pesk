@@ -1,9 +1,9 @@
 package me.bluboy.addon.elements.expressions;
 
+import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.skript.util.SkriptColor;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.TropicalFish;
 import org.bukkit.event.Event;
@@ -12,7 +12,9 @@ import org.jetbrains.annotations.Nullable;
 public class ExprTropicalFishBodyColor extends SimplePropertyExpression<LivingEntity, SkriptColor> {
 
     static {
-        register(ExprTropicalFishBodyColor.class, SkriptColor.class, "body colo[u]r", "livingentities");
+        if (Skript.classExists("org.bukkit.entity.TropicalFish")) {
+            register(ExprTropicalFishBodyColor.class, SkriptColor.class, "body colo[u]r", "livingentities");
+        }
     }
 
     @Override

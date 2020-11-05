@@ -13,7 +13,9 @@ import org.jetbrains.annotations.Nullable;
 public class CondHasNectar extends Condition {
 
     static {
-        Skript.registerCondition(CondHasNectar.class, "%livingentities% (have|has) nectar");
+        if (Skript.classExists("org.bukkit.entity.Bee")) {
+            Skript.registerCondition(CondHasNectar.class, "%livingentities% (have|has) nectar");
+        }
     }
 
     private Expression<LivingEntity> entities;

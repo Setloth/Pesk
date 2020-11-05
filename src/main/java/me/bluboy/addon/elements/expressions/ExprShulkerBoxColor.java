@@ -1,16 +1,18 @@
 package me.bluboy.addon.elements.expressions;
 
+import ch.njol.skript.Skript;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.skript.util.SkriptColor;
 import org.bukkit.block.Block;
 import org.bukkit.block.ShulkerBox;
-import org.bukkit.entity.TropicalFish;
 import org.jetbrains.annotations.Nullable;
 
 public class ExprShulkerBoxColor extends SimplePropertyExpression<Block, SkriptColor> {
 
     static {
-        register(ExprShulkerBoxColor.class, SkriptColor.class, "box colo[u]r", "blocks");
+        if (Skript.classExists("org.bukkit.block.ShulkerBox")) {
+            register(ExprShulkerBoxColor.class, SkriptColor.class, "box colo[u]r", "blocks");
+        }
     }
 
     @Override

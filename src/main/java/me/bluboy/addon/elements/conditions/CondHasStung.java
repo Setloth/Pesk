@@ -13,7 +13,9 @@ import org.jetbrains.annotations.Nullable;
 public class CondHasStung extends Condition {
 
     static {
-        Skript.registerCondition(CondHasStung.class, "%livingentities% (have|has) stung");
+        if (Skript.classExists("org.bukkit.entity.Bee")) {
+            Skript.registerCondition(CondHasStung.class, "%livingentities% (have|has) stung");
+        }
     }
 
     private Expression<LivingEntity> entities;
