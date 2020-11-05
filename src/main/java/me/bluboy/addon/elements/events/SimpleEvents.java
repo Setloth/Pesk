@@ -28,13 +28,7 @@ public class SimpleEvents extends SimpleEvent {
                     return e.getLectern().getBlock();
                 }
             }, 0);
-            EventValues.registerEventValue(PlayerTakeLecternBookEvent.class, Lectern.class, new Getter<Lectern, PlayerTakeLecternBookEvent>() {
-                @Nullable
-                @Override
-                public Lectern get(PlayerTakeLecternBookEvent e) {
-                    return e.getLectern();
-                }
-            }, 0);
+
             EventValues.registerEventValue(PlayerTakeLecternBookEvent.class, ItemStack.class, new Getter<ItemStack, PlayerTakeLecternBookEvent>() {
                 @Nullable
                 @Override
