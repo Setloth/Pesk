@@ -6,14 +6,19 @@ on right click on bee:
 	broadcast "Hive: %entity's hive%"
 	broadcast "Cannot enter ticks: %cannot enter ticks of entity%"
 
+
 on right click on enderman:
     broadcast "Carrying: %entity's carried block%"
+    set entity's carried block to snow_block
 
 on right click on snowman:
+
     if entity is derp:
         broadcast "is derp :)"
+        set derp state of entity to false
         stop
     broadcast "not"
+    set derp state of entity to true
 
 on right click on endermite:
     if entity is player spawned:
@@ -25,8 +30,8 @@ on cauldron level change:
     broadcast "%block%'s water level has changed"
 
 on trade select:
-    broadcast "%player% has selected %item% in %event-inventory%"
-
+    broadcast "%player% has selected (%event-number%) in %event-inventory%"
+    cancel event
 on load:
     set {_v} to "test"
     broadcast "%class of {_v}%"
@@ -59,11 +64,13 @@ on right click on beacon:
 
 on right click on pufferfish:
 	broadcast "Puffstate: %puffstate of entity%"
+	set puffstate of entity to 0
 
 on right click on tropical fish:
 	broadcast "Pattern: %pattern color of entity%"
 	broadcast "Body: %body color of entity%"
-
+	set pattern color of entity to (body color of entity)
+	set body color of entity to (pattern color of entity)
 on right click on zombie:
 	if entity is converting:
 		broadcast "is converting"
