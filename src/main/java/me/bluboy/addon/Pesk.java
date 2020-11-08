@@ -2,6 +2,7 @@ package me.bluboy.addon;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
+import me.bluboy.MetricsLite;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.EnderSignal;
@@ -21,6 +22,8 @@ public class Pesk extends JavaPlugin {
     @Override
     public void onEnable() {
         long start = System.currentTimeMillis();
+        int id = 9344;
+        MetricsLite metricsLite = new MetricsLite(this, id);
         this.instance = this;
         addon = Skript.registerAddon(this);
         try {
@@ -33,7 +36,6 @@ public class Pesk extends JavaPlugin {
             Bukkit.getLogger().severe(ChatColor.RED+"There was a severe error while loading "+this.getName()+"...");
             e.printStackTrace();
         }
-
 
     }
 
