@@ -5,15 +5,14 @@ import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.entity.Bee;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.TropicalFish;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-public class ExprBeeNectar extends SimplePropertyExpression<LivingEntity, Boolean> {
+public class ExprBeePollen extends SimplePropertyExpression<LivingEntity, Boolean> {
 
     static {
         if (Skript.classExists("org.bukkit.entity.Bee")) {
-            register(ExprBeeNectar.class, Boolean.class, "nectar", "livingentities");
+            register(ExprBeePollen.class, Boolean.class, "(nectar|pollen[ation]) [state]", "livingentities");
         }
     }
 

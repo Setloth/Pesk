@@ -4,11 +4,16 @@ import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.EnderSignal;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.io.IOException;
 
 public class Pesk extends JavaPlugin {
+
 
     Pesk instance;
     SkriptAddon addon;
@@ -19,7 +24,9 @@ public class Pesk extends JavaPlugin {
         this.instance = this;
         addon = Skript.registerAddon(this);
         try {
+            Bukkit.getLogger().info(EnderSignal.class.getSimpleName());
             addon.loadClasses("me.bluboy.addon", "elements");
+            this.saveResource("resource.sk", true);
             Bukkit.getLogger().info(ChatColor.BLUE+"Done - "+(System.currentTimeMillis() - start)+" ms");
         }
         catch (IOException e){

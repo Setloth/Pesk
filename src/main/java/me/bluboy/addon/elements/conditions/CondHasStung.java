@@ -31,7 +31,7 @@ public class CondHasStung extends Condition {
 
     @Override
     public String toString(@Nullable Event event, boolean b) {
-        return null;
+        return "stung of "+entities.toString(event, b);
     }
 
     @Override

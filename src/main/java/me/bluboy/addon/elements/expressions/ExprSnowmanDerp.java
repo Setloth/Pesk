@@ -5,22 +5,23 @@ import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.entity.Bee;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Snowman;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-public class ExprBeeStung extends SimplePropertyExpression<LivingEntity, Boolean> {
+public class ExprSnowmanDerp extends SimplePropertyExpression<LivingEntity, Boolean> {
 
     static {
-        if (Skript.classExists("org.bukkit.entity.Bee")) {
-            register(ExprBeeStung.class, Boolean.class, "stung [state]", "livingentities");
+        if (Skript.classExists("org.bukkit.entity.Snowman")) {
+            register(ExprSnowmanDerp.class, Boolean.class, "derp [state]", "livingentities");
         }
     }
 
     @Override
     @Nullable
     public Boolean convert(final LivingEntity e) {
-        if (!(e instanceof Bee)) return null;
-        return ((Bee)e).hasStung();
+        if (!(e instanceof Snowman)) return null;
+        return ((Snowman)e).isDerp();
     }
 
     @Override
@@ -35,19 +36,19 @@ public class ExprBeeStung extends SimplePropertyExpression<LivingEntity, Boolean
     public void change(final Event e, @Nullable final Object[] delta, final ChangeMode mode) {
         if (delta == null) {
             for (final LivingEntity entity : getExpr().getArray(e)) {
-                ((Bee)entity).setHasStung(false);
+                ((Snowman)entity).setDerp(false);
             }
         } else {
             final Boolean bool = (Boolean) delta[0];
             for (final LivingEntity entity : getExpr().getArray(e)) {
-                ((Bee)entity).setHasStung(bool);
+                ((Snowman)entity).setDerp(bool);
             }
         }
     }
 
     @Override
     protected String getPropertyName() {
-        return "stung";
+        return "derp state";
     }
 
     @Override

@@ -4,23 +4,24 @@ import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.entity.Bee;
+import org.bukkit.entity.Endermite;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-public class ExprBeeStung extends SimplePropertyExpression<LivingEntity, Boolean> {
+public class ExprEndermitePlayerSpawned extends SimplePropertyExpression<LivingEntity, Boolean> {
 
     static {
-        if (Skript.classExists("org.bukkit.entity.Bee")) {
-            register(ExprBeeStung.class, Boolean.class, "stung [state]", "livingentities");
+        if (Skript.classExists("org.bukkit.entity.Endermite")) {
+            register(ExprEndermitePlayerSpawned.class, Boolean.class, "player[( |-)]spawn[ed] [value]", "livingentities");
         }
     }
 
     @Override
     @Nullable
     public Boolean convert(final LivingEntity e) {
-        if (!(e instanceof Bee)) return null;
-        return ((Bee)e).hasStung();
+        if (!(e instanceof Endermite)) return null;
+        return ((Endermite)e).isPlayerSpawned();
     }
 
     @Override
@@ -35,19 +36,19 @@ public class ExprBeeStung extends SimplePropertyExpression<LivingEntity, Boolean
     public void change(final Event e, @Nullable final Object[] delta, final ChangeMode mode) {
         if (delta == null) {
             for (final LivingEntity entity : getExpr().getArray(e)) {
-                ((Bee)entity).setHasStung(false);
+                ((Endermite)entity).setPlayerSpawned(false);
             }
         } else {
             final Boolean bool = (Boolean) delta[0];
             for (final LivingEntity entity : getExpr().getArray(e)) {
-                ((Bee)entity).setHasStung(bool);
+                ((Endermite)entity).setPlayerSpawned(bool);
             }
         }
     }
 
     @Override
     protected String getPropertyName() {
-        return "stung";
+        return "player spawned value";
     }
 
     @Override

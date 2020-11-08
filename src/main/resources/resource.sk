@@ -1,0 +1,81 @@
+on right click on bee:
+	if entity is pollinated:
+		broadcast "has nectar"
+	broadcast "Anger Level: %entity's anger%"
+	broadcast "Flower: %entity's flower%"
+	broadcast "Hive: %entity's hive%"
+	broadcast "Cannot enter ticks: %cannot enter ticks of entity%"
+
+on right click on enderman:
+    broadcast "Carrying: %entity's carried block%"
+
+on right click on snowman:
+    if entity is derp:
+        broadcast "is derp :)"
+        stop
+    broadcast "not"
+
+on right click on endermite:
+    if entity is player spawned:
+        broadcast "is player spawned"
+        stop
+    broadcast "not"
+
+on cauldron level change:
+    broadcast "%block%'s water level has changed"
+
+on trade select:
+    broadcast "%player% has selected %item% in %event-inventory%"
+
+on load:
+    set {_v} to "test"
+    broadcast "%class of {_v}%"
+
+on lectern take:
+	broadcast "%player% took %item% from %block% at %location of block%"
+
+on fluid level change:
+	broadcast "%block% fluid"
+
+on moisture change:
+	broadcast "%block% moisture"
+
+on bat toggle sleep:
+	if entity is awake:
+		broadcast "%entity% has woken up at %entity's location%"
+	else if entity is not awake:
+		broadcast "%entity% has fallen asleep at %entity's location%"
+
+on right click on beehive:
+	if block is sedated:
+		broadcast "is sedated"
+	broadcast "Flower: %flower location of block%"
+
+on right click on beacon:
+	broadcast "Affects: %entities in range of block%"
+	broadcast "Tier: %tier of block%"
+	broadcast "Primary: %primary effect of block%"
+	broadcast "Secondary: %secondary effect of block%"
+
+on right click on pufferfish:
+	broadcast "Puffstate: %puffstate of entity%"
+
+on right click on tropical fish:
+	broadcast "Pattern: %pattern color of entity%"
+	broadcast "Body: %body color of entity%"
+
+on right click on zombie:
+	if entity is converting:
+		broadcast "is converting"
+		stop
+	broadcast "not"
+
+on right click on strider:
+	if entity is shivering:
+		broadcast "is shivering"
+		stop
+	broadcast "not"
+
+on right click on command block:
+	broadcast "Executor: %executor of block%"
+	broadcast "Command: %command of block%"
