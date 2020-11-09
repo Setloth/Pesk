@@ -6,12 +6,12 @@ import org.jetbrains.annotations.Nullable;
 public class ExprObjectClass extends SimplePropertyExpression<Object, String> {
 
     static {
-        register(ExprObjectClass.class, String.class, "(class|type)", "objects");
+        register(ExprObjectClass.class, String.class, "class [name]", "objects");
     }
 
     @Override
     protected String getPropertyName() {
-        return "class";
+        return "class name";
     }
 
     @Nullable

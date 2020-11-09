@@ -15,7 +15,6 @@ import java.io.IOException;
 
 public class Pesk extends JavaPlugin {
 
-
     Pesk instance;
     SkriptAddon addon;
 
@@ -23,11 +22,11 @@ public class Pesk extends JavaPlugin {
     public void onEnable() {
         long start = System.currentTimeMillis();
         int id = 9344;
-        MetricsLite metricsLite = new MetricsLite(this, id);
         this.instance = this;
         addon = Skript.registerAddon(this);
         try {
-            Bukkit.getLogger().info(EnderSignal.class.getSimpleName());
+            MetricsLite metricsLite = new MetricsLite(this, id);
+            Bukkit.getLogger().info("MetricsLite has been loaded id: "+id);
             addon.loadClasses("me.bluboy.addon", "elements");
             this.saveResource("resource.sk", true);
             Bukkit.getLogger().info(ChatColor.BLUE+"Done - "+(System.currentTimeMillis() - start)+" ms");

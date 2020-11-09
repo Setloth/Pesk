@@ -66,11 +66,13 @@ on right click on beacon:
 on right click on pufferfish:
 	broadcast "Puffstate: %puffstate of entity%"
 	set puffstate of entity to 0
+
 on right click on tropical fish:
 	broadcast "Pattern: %pattern color of entity%"
 	broadcast "Body: %body color of entity%"
 	set pattern color of entity to (body color of entity)
 	set body color of entity to (pattern color of entity)
+
 on right click on zombie:
 	if entity is converting:
 		broadcast "is converting"
