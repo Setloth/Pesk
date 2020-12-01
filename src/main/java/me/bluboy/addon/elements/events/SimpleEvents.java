@@ -1,21 +1,29 @@
 package me.bluboy.addon.elements.events;
 
 import ch.njol.skript.Skript;
-import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
+import org.bukkit.Raid;
 import org.bukkit.block.Block;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Raider;
 import org.bukkit.event.block.CauldronLevelChangeEvent;
 import org.bukkit.event.entity.BatToggleSleepEvent;
 import org.bukkit.event.inventory.TradeSelectEvent;
 import org.bukkit.event.player.PlayerTakeLecternBookEvent;
+import org.bukkit.event.raid.RaidFinishEvent;
+import org.bukkit.event.raid.RaidSpawnWaveEvent;
+import org.bukkit.event.raid.RaidStopEvent;
+import org.bukkit.event.raid.RaidTriggerEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Recipe;
 import org.jetbrains.annotations.Nullable;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SimpleEvents extends SimpleEvent {
 

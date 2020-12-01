@@ -6,10 +6,31 @@ on right click on bee:
 	broadcast "Hive: %entity's hive%"
 	broadcast "Cannot enter ticks: %cannot enter ticks of entity%"
 
-
 on right click on enderman:
     broadcast "Carrying: %entity's carried block%"
     set entity's carried block to snow_block
+
+command teaminfo:
+    trigger:
+        set {_c} to "%team color of player's team%%prefix of player's team%%displayname of player's team%%suffix of player's team%"
+        send "%name of player's team%, %formatted {_c}%, %size of player's team%, %entries of player's team%"
+
+command createteam <text>:
+    trigger:
+        create a new team named arg-1
+        send "Created: %arg-1%"
+
+command deleteteam <team>:
+    trigger:
+        delete team arg-1
+
+command jointeam <team>:
+    trigger:
+        add player to team arg-1
+
+command leaveteam <team>:
+    trigger:
+        remove player from team arg-1
 
 on right click on snowman:
 
@@ -32,9 +53,13 @@ on cauldron level change:
 on trade select:
     broadcast "%player% has selected (%event-number%) in %event-inventory%"
     cancel event
+
+on right click on iron golem:
+    if entity is player created:
+        send "player created"
+
 on load:
-    set {_v} to "test"
-    broadcast "%class of {_v}%"
+    send "%!true%" to console
 
 on lectern take:
 	broadcast "%player% took %item% from %block% at %location of block%"
@@ -61,7 +86,6 @@ on right click on beacon:
 	broadcast "Tier: %tier of block%"
 	broadcast "Primary: %primary effect of block%"
 	broadcast "Secondary: %secondary effect of block%"
-
 
 on right click on pufferfish:
 	broadcast "Puffstate: %puffstate of entity%"

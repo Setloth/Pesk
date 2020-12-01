@@ -34,7 +34,7 @@ public class ExprBeaconEntitiesRange extends SimpleExpression<LivingEntity> {
         for (LivingEntity ent : ((Beacon)b.getState()).getEntitiesInRange()) {
             ents.add(ent);
         }
-        LivingEntity[] array = ents.toArray(new LivingEntity[ents.size()]);
+        LivingEntity[] array = ents.toArray(new LivingEntity[0]);
         return array;
     }
 

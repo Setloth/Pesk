@@ -2,6 +2,7 @@ package me.bluboy.addon;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
+import ch.njol.skript.registrations.Classes;
 import me.bluboy.MetricsLite;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

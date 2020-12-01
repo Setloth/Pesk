@@ -1,24 +1,28 @@
 package me.bluboy.addon.elements.expressions;
 
+import ch.njol.skript.classes.Changer;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
+import org.bukkit.event.Event;
+import org.bukkit.scoreboard.Team;
 import org.jetbrains.annotations.Nullable;
 
-public class ExprObjectClass extends SimplePropertyExpression<Object, String> {
+public class ExprTeamName extends SimplePropertyExpression<Team, String> {
 
     static {
-        register(ExprObjectClass.class, String.class, "class [name]", "objects");
+        register(ExprTeamName.class, String.class, "[team] name", "teams");
     }
 
     @Override
     protected String getPropertyName() {
-        return "class name";
+        return "team name";
     }
 
     @Nullable
     @Override
-    public String convert(Object o) {
-        return o.getClass().getSimpleName().trim();
+    public String convert(Team team) {
+        return team.getName();
     }
+
 
     @Override
     public Class<? extends String> getReturnType() {

@@ -6,24 +6,24 @@ import org.bukkit.entity.Endermite;
 import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.LivingEntity;
 
-public class CondIsPlayerSpawned extends PropertyCondition<LivingEntity> {
+public class CondIsPlayerCreated extends PropertyCondition<LivingEntity> {
 
     static {
-        if (Skript.classExists("org.bukkit.entity.Endermite")) {
-            register(CondIsPlayerSpawned.class, "player[( |-)]spawn[ed]", "livingentities");
+        if (Skript.classExists("org.bukkit.entity.IronGolem")) {
+            register(CondIsPlayerCreated.class, "player[( |-)]creat(e|ed)", "livingentities");
         }
     }
 
     @Override
     public boolean check(LivingEntity e) {
 
-        if (!(e instanceof Endermite)) return false;
-        return ((Endermite)e).isPlayerSpawned();
-
+        if (!(e instanceof IronGolem)) return false;
+        return ((IronGolem)e).isPlayerCreated();
+        
     }
 
     @Override
     protected String getPropertyName() {
-        return "player spawned";
+        return "player created";
     }
 }

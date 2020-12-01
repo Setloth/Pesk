@@ -3,25 +3,25 @@ package me.bluboy.addon.elements.expressions;
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
-import org.bukkit.entity.Bee;
 import org.bukkit.entity.Endermite;
+import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-public class ExprEndermitePlayerSpawned extends SimplePropertyExpression<LivingEntity, Boolean> {
+public class ExprPlayerCreated extends SimplePropertyExpression<LivingEntity, Boolean> {
 
     static {
-        if (Skript.classExists("org.bukkit.entity.Endermite")) {
-            register(ExprEndermitePlayerSpawned.class, Boolean.class, "player[( |-)]spawn[ed] [value]", "livingentities");
+        if (Skript.classExists("org.bukkit.entity.IronGolem")) {
+            register(ExprPlayerCreated.class, Boolean.class, "player[( |-)]creat(e|ed) [value]", "livingentities");
         }
     }
 
     @Override
     @Nullable
     public Boolean convert(final LivingEntity e) {
-        if (!(e instanceof Endermite)) return null;
-        return ((Endermite)e).isPlayerSpawned();
+        if (!(e instanceof IronGolem)) return null;
+        return ((IronGolem)e).isPlayerCreated();
     }
 
     @Override
@@ -36,19 +36,19 @@ public class ExprEndermitePlayerSpawned extends SimplePropertyExpression<LivingE
     public void change(final Event e, @Nullable final Object[] delta, final ChangeMode mode) {
         if (delta == null) {
             for (final LivingEntity entity : getExpr().getArray(e)) {
-                ((Endermite)entity).setPlayerSpawned(false);
+                ((IronGolem)entity).setPlayerCreated(false);
             }
         } else {
             final Boolean bool = (Boolean) delta[0];
             for (final LivingEntity entity : getExpr().getArray(e)) {
-                ((Endermite)entity).setPlayerSpawned(bool);
+                ((IronGolem)entity).setPlayerCreated(bool);
             }
         }
     }
 
     @Override
     protected String getPropertyName() {
-        return "player spawned value";
+        return "player created value";
     }
 
     @Override
