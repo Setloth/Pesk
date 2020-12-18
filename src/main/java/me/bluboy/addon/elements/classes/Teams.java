@@ -31,7 +31,7 @@ public class Teams {
                     @Override
                     public String toVariableNameString(Team t) {
 
-                        return "team:"+t.getName();
+                        return t.getName();
 
                     }
 
