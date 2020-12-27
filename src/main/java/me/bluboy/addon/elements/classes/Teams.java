@@ -37,7 +37,7 @@ public class Teams {
 
                     @Override
                     public String getVariableNamePattern() {
-                        return "team:(.)";
+                        return "(.)";
                     }
 
                     @Nullable
