@@ -5,7 +5,6 @@ import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.entity.Bee;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.TropicalFish;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 

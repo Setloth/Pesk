@@ -5,7 +5,6 @@ import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.block.Block;
 import org.bukkit.block.CommandBlock;
-import org.bukkit.entity.TropicalFish;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 

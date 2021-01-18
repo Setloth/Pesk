@@ -19,7 +19,7 @@ public class ExprBeaconEntitiesRange extends SimpleExpression<LivingEntity> {
 
     static {
         if (Skript.classExists("org.bukkit.block.Beacon")) {
-            Skript.registerExpression(ExprBeaconEntitiesRange.class, LivingEntity.class, ExpressionType.COMBINED, "entit(ys|ies) in range of %blocks%", "%blocks%'[s] entit(ys|ies) in range");
+            Skript.registerExpression(ExprBeaconEntitiesRange.class, LivingEntity.class, ExpressionType.PROPERTY, "entit(ys|ies) in range of %blocks%", "%blocks%'[s] entit(ys|ies) in range");
         }
     }
 

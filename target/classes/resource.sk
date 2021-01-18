@@ -8,7 +8,8 @@ on right click on bee:
 
 on right click on enderman:
     broadcast "Carrying: %entity's carried block%"
-    set entity's carried block to snow_block
+    set {_c} to random element out of all items
+    set entity's carried block to {_c}
 
 command teaminfo:
     trigger:
@@ -18,7 +19,6 @@ command teaminfo:
 command createteam <text>:
     trigger:
         create a new team named arg-1
-        send "Created: %arg-1%"
 
 command deleteteam <team>:
     trigger:
@@ -112,3 +112,29 @@ on right click on strider:
 on right click on command block:
 	broadcast "Executor: %executor of block%"
 	broadcast "Command: %command of block%"
+
+command bukkitinfo:
+    trigger:
+        send "Idle Timeout Ticks: %idle timeout%, Spawn Radius: %spawn radius%, Shutdown Message: %formatted shutdown message%, Name: %server name%, Ambient Ticks: %ambient spawn ticks%, Animal Ticks: %animal spawn ticks%, Monster Ticks: %monster spawn ticks%, Water Ticks: %water spawn ticks%, Water Ticks: %water spawn ticks%, Water Ambient Spawn Limit: %water ambient spawn limit% and Water Animal Spawn Ticks: %water animal spawn limit%"
+
+command chunkloaded:
+    trigger:
+        if chunk at player is force loaded:
+            send "Loaded: %force loaded state of chunk at player%"
+            stop
+        send "Not"
+
+command chunkentities:
+    trigger:
+        send "%entities in chunk at player%"
+
+command bans:
+    trigger:
+        send "Bans: %banlist%"
+
+command isinside:
+    trigger:
+        if (player's location) is inside (player's world):
+            send "Inside border"
+            stop
+        send "not inside"
