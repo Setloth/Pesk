@@ -1,140 +1,35 @@
-on right click on bee:
-	if entity is pollinated:
-		broadcast "has nectar"
-	broadcast "Anger Level: %entity's anger%"
-	broadcast "Flower: %entity's flower%"
-	broadcast "Hive: %entity's hive%"
-	broadcast "Cannot enter ticks: %cannot enter ticks of entity%"
+on right click:
+    target entity is a villager:
+        send "%target entity's restock amount%"
+    target entity is a fox:
+        chance of 50%:
+            if target entity's sleeping state is true:
+                set target entity's sleeping state to false
+            else:
+                set target entity's sleeping state to true
+        else:
+            if target entity's crouching state is true:
+                set target entity's crouching state to false
+            else:
+                set target entity's crouching state to true
+    target entity is a wolf:
+        set target entity's collar color to black
+    target entity is a villager:
+        force target entity to sleep at player's location
+    block is a chest:
+        chance of 50%:
+            open lid of block
+        else:
+            close lid of block
 
-on right click on enderman:
-    broadcast "Carrying: %entity's carried block%"
-    set {_c} to random element out of all items
-    set entity's carried block to {_c}
+on connect:
+    if player's name is "Bluberriess":
+        allow # :)
+    else:
+        disallow with message "entry denied"
 
-command teaminfo:
-    trigger:
-        set {_c} to "%team color of player's team%%prefix of player's team%%displayname of player's team%%suffix of player's team%"
-        send "%name of player's team%, %formatted {_c}%, %size of player's team%, %entries of player's team%"
+on leash:
+    send "%player% has leashed %event-entity%"
 
-command createteam <text>:
-    trigger:
-        create a new team named arg-1
-
-command deleteteam <team>:
-    trigger:
-        delete team arg-1
-
-command jointeam <team>:
-    trigger:
-        add player to team arg-1
-
-command leaveteam <team>:
-    trigger:
-        remove player from team arg-1
-
-on right click on snowman:
-
-    if entity is derp:
-        broadcast "is derp :)"
-        set derp state of entity to false
-        stop
-    broadcast "not"
-    set derp state of entity to true
-
-on right click on endermite:
-    if entity is player spawned:
-        broadcast "is player spawned"
-        stop
-    broadcast "not"
-
-on cauldron level change:
-    broadcast "%block%'s water level has changed"
-
-on trade select:
-    broadcast "%player% has selected (%event-number%) in %event-inventory%"
-    cancel event
-
-on right click on iron golem:
-    if entity is player created:
-        send "player created"
-
-on load:
-    send "%!true%" to console
-
-on lectern take:
-	broadcast "%player% took %item% from %block% at %location of block%"
-
-on fluid level change:
-	broadcast "%block% fluid"
-
-on moisture change:
-	broadcast "%block% moisture"
-
-on bat toggle sleep:
-	if entity is awake:
-		broadcast "%entity% has woken up at %entity's location%"
-	else if entity is not awake:
-		broadcast "%entity% has fallen asleep at %entity's location%"
-
-on right click on beehive:
-	if block is sedated:
-		broadcast "is sedated"
-	broadcast "Flower: %flower location of block%"
-
-on right click on beacon:
-	broadcast "Affects: %entities in range of block%"
-	broadcast "Tier: %tier of block%"
-	broadcast "Primary: %primary effect of block%"
-	broadcast "Secondary: %secondary effect of block%"
-
-on right click on pufferfish:
-	broadcast "Puffstate: %puffstate of entity%"
-	set puffstate of entity to 0
-
-on right click on tropical fish:
-	broadcast "Pattern: %pattern color of entity%"
-	broadcast "Body: %body color of entity%"
-	set pattern color of entity to (body color of entity)
-	set body color of entity to (pattern color of entity)
-
-on right click on zombie:
-	if entity is converting:
-		broadcast "is converting"
-		stop
-	broadcast "not"
-
-on right click on strider:
-	if entity is shivering:
-		broadcast "is shivering"
-		stop
-	broadcast "not"
-
-on right click on command block:
-	broadcast "Executor: %executor of block%"
-	broadcast "Command: %command of block%"
-
-command bukkitinfo:
-    trigger:
-        send "Idle Timeout Ticks: %idle timeout%, Spawn Radius: %spawn radius%, Shutdown Message: %formatted shutdown message%, Name: %server name%, Ambient Ticks: %ambient spawn ticks%, Animal Ticks: %animal spawn ticks%, Monster Ticks: %monster spawn ticks%, Water Ticks: %water spawn ticks%, Water Ticks: %water spawn ticks%, Water Ambient Spawn Limit: %water ambient spawn limit% and Water Animal Spawn Ticks: %water animal spawn limit%"
-
-command chunkloaded:
-    trigger:
-        if chunk at player is force loaded:
-            send "Loaded: %force loaded state of chunk at player%"
-            stop
-        send "Not"
-
-command chunkentities:
-    trigger:
-        send "%entities in chunk at player%"
-
-command bans:
-    trigger:
-        send "Bans: %banlist%"
-
-command isinside:
-    trigger:
-        if (player's location) is inside (player's world):
-            send "Inside border"
-            stop
-        send "not inside"
+on whitelist toggle:
+    broadcast "Whitelist has been toggled to %event-boolean%"
