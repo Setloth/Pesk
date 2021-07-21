@@ -1,0 +1,7 @@
+name: Pesk
+author: Echology
+description: This is a pest, call an exterminator...
+version: ${project.version}
+main: me.echo.pesk.Pesk
+api-version: 1.17
+depend: [Skript]
