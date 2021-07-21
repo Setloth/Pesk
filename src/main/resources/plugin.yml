@@ -1,8 +1,8 @@
 name: Pesk
-author: BluBoy3ch0
+author: Echology
 description: This is a pest, call an exterminator...
-version: 1.6
-api-version: 1.16
+version: 2.0.1
+api-version: 1.17
 depend: [Skript]
-main: me.bluboy.pesk.Pesk
+main: me.echo.pesk.Pesk
 load: STARTUP
