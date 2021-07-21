@@ -7,40 +7,29 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import org.bukkit.event.Event;
-import org.bukkit.scoreboard.Team;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ExprTeamEntries extends SimpleExpression<String> {
+public class ExprTrimmed extends SimpleExpression<String> {
 
     static {
-            Skript.registerExpression(ExprTeamEntries.class, String.class, ExpressionType.COMBINED, "entries of %teams%", "%teams%'[s] entries");
-
+        Skript.registerExpression(ExprTrimmed.class, String.class, ExpressionType.PROPERTY,"trim[med] %strings%");
     }
 
-    private Expression<Team> teams;
+    private Expression<String> string;
 
     @Nullable
     @Override
     protected String[] get(Event event) {
-        Team t = teams.getSingle(event);
-        if (t == null) {
-            Skript.error("Cannot get entries because the team does not exist");
-            return null;
-        }
-        List<String> ss = new ArrayList<>();
-        for (String ent : t.getEntries()) {
-            ss.add(ent);
-        }
-        String[] array = ss.toArray(new String[0]);
-        return array;
+        String str = string.getSingle(event);
+        if (str == null) return null;
+        return new String[] {str.trim()};
     }
 
     @Override
     public boolean isSingle() {
-        return false;
+        return true;
     }
 
     @Override
@@ -50,12 +39,12 @@ public class ExprTeamEntries extends SimpleExpression<String> {
 
     @Override
     public String toString(@Nullable Event event, boolean b) {
-        return "entries " + (teams != null ? " of "+teams.toString(event, b) : "");
+        return "trim[med] "+string.toString(event, b);
     }
 
     @Override
     public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-        this.teams = (Expression<Team>)expressions[0];
+        string = (Expression<String>) expressions[0];
         return true;
     }
 }

@@ -1,4 +1,4 @@
-package me.bluboy.pesk.elements.effects;
+package ignore;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Effect;
@@ -12,7 +12,9 @@ import org.jetbrains.annotations.Nullable;
 public class EffTeamCreate extends Effect {
 
     static {
-        Skript.registerEffect(EffTeamCreate.class, "(create|make|register) [a] [new] team [named] %strings%");
+        if (Skript.classExists("org.bukkit.scoreboard.Team")) {
+            Skript.registerEffect(EffTeamCreate.class, "(create|make|register) [a] [new] team [named] %strings%");
+        }
     }
 
     private Expression<String> name;

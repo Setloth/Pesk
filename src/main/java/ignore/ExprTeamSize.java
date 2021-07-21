@@ -1,4 +1,4 @@
-package me.bluboy.pesk.elements.expressions;
+package ignore;
 
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.scoreboard.Team;

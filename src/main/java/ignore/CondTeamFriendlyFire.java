@@ -1,4 +1,4 @@
-package me.bluboy.pesk.elements.conditions;
+package ignore;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Condition;
@@ -9,11 +9,13 @@ import org.bukkit.event.Event;
 import org.bukkit.scoreboard.Team;
 import org.jetbrains.annotations.Nullable;
 
-public class CondTeamFriendlyInvis extends Condition {
+public class CondTeamFriendlyFire extends Condition {
 
     static {
-        Skript.registerCondition(CondTeamFriendlyInvis.class, "%teams%'[s] [can] [see] friendly invis[ibles] [state]", "[can] [see] friendly invis[ibles] [state] [of] %teams%");
+        if (Skript.classExists("org.bukkit.scoreboard.Team")) {
 
+            Skript.registerCondition(CondTeamFriendlyFire.class, "%teams%'[s] [allow] friendly fire [state]", "[allow] friendly fire [state] [of] %teams%");
+        }
     }
 
     private Expression<Team> teams;
@@ -21,7 +23,7 @@ public class CondTeamFriendlyInvis extends Condition {
     @Override
     public boolean check(Event event) {
         for (Team t : teams.getArray(event)) {
-            if (!t.canSeeFriendlyInvisibles()) return true;
+            if (!t.allowFriendlyFire()) return true;
             continue;
         }
         return false;
@@ -29,7 +31,7 @@ public class CondTeamFriendlyInvis extends Condition {
 
     @Override
     public String toString(@Nullable Event event, boolean b) {
-        return "Friendly Invisibles of "+teams.toString(event, b);
+        return "Friendly Fire of "+teams.toString(event, b);
     }
 
     @Override

@@ -1,59 +1,54 @@
-package me.bluboy.pesk.elements.expressions;
+package ignore;
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
-import ch.njol.skript.util.SkriptColor;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.event.Event;
 import org.bukkit.scoreboard.Team;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ExprTeamColor extends SimplePropertyExpression<Team, ChatColor> {
+public class ExprTeamPrefix extends SimplePropertyExpression<Team, String> {
 
     static {
-        register(ExprTeamColor.class, ChatColor.class, "team color", "teams");
+        register(ExprTeamPrefix.class, String.class, "[team] prefix", "teams");
     }
 
     @Override
     protected String getPropertyName() {
-        return "team color";
+        return "team prefix";
     }
 
     @Nullable
     @Override
-    public ChatColor convert(Team team) {
-        return team.getColor();
+    public String convert(Team team) {
+        return ((TextComponent)team.prefix()).content();
     }
 
     @Override
     @Nullable
     public Class<?>[] acceptChange(final Changer.ChangeMode mode) {
         if (mode == Changer.ChangeMode.SET || mode == Changer.ChangeMode.DELETE || mode == Changer.ChangeMode.RESET)
-            return new Class[] {ChatColor.class};
+            return new Class[] {String.class};
         return null;
     }
 
     @Override
     public void change(final Event e, @Nullable final Object[] delta, final Changer.ChangeMode mode) {
-
-
         if (delta == null) {
             for (final Team t : getExpr().getArray(e)) {
-                t.setColor(null);
+                t.prefix(null);
             }
         } else {
-            final @NonNull ChatColor color = ((ChatColor)delta[0]);
+            final String name = (String) delta[0];
             for (final Team t : getExpr().getArray(e)) {
-                t.setColor(color);
+                t.prefix(Component.text(name));
             }
         }
     }
 
     @Override
-    public Class<? extends ChatColor> getReturnType() {
-        return ChatColor.class;
+    public Class<? extends String> getReturnType() {
+        return String.class;
     }
 }

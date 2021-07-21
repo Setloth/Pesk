@@ -1,4 +1,4 @@
-package me.bluboy.pesk.elements.effects;
+package ignore;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Effect;
@@ -13,7 +13,11 @@ import org.jetbrains.annotations.Nullable;
 public class EffTeamRemoveEntity extends Effect {
 
     static {
-        Skript.registerEffect(EffTeamRemoveEntity.class, "remove %livingentities% from [the] team [named] %teams%");
+        if (Skript.classExists("org.bukkit.scoreboard.Team")) {
+            Skript.registerEffect(EffTeamRemoveEntity.class, "remove %livingentities% from [the] team [named] %teams%");
+        }
+
+
     }
 
     private Expression<LivingEntity> entities;
@@ -21,13 +25,16 @@ public class EffTeamRemoveEntity extends Effect {
 
     @Override
     protected void execute(Event event) {
-        LivingEntity entity = entities.getSingle(event);
+        LivingEntity[] entity = entities.getArray(event);
         Team team = teams.getSingle(event);
-        if (!team.getEntries().contains(entity)) {
-            Skript.error(entity.getName()+" is not in the team "+team.getName());
-            return;
+        for (LivingEntity lEntity : entity) {
+            if (!team.getEntries().contains(lEntity)) {
+                Skript.error(lEntity.getName()+" is not in the team "+team.getName());
+                return;
+            }
+            team.removeEntry(lEntity.getName());
         }
-        team.removeEntry(entity.getName());
+
     }
 
     @Override
