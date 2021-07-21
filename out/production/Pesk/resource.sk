@@ -1,0 +1,35 @@
+on right click:
+    target entity is a villager:
+        send "%target entity's restock amount%"
+    target entity is a fox:
+        chance of 50%:
+            if target entity's sleeping state is true:
+                set target entity's sleeping state to false
+            else:
+                set target entity's sleeping state to true
+        else:
+            if target entity's crouching state is true:
+                set target entity's crouching state to false
+            else:
+                set target entity's crouching state to true
+    target entity is a wolf:
+        set target entity's collar color to black
+    target entity is a villager:
+        force target entity to sleep at player's location
+    block is a chest:
+        chance of 50%:
+            open lid of block
+        else:
+            close lid of block
+
+on connect:
+    if player's name is "Bluberriess":
+        allow # :)
+    else:
+        disallow with message "entry denied"
+
+on leash:
+    send "%player% has leashed %event-entity%"
+
+on whitelist toggle:
+    broadcast "Whitelist has been toggled to %event-boolean%"

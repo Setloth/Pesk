@@ -1,0 +1,8 @@
+name: Pesk
+author: Echology
+description: This is a pest, call an exterminator...
+version: 2.0.1
+api-version: 1.17
+depend: [Skript]
+main: me.echo.pesk.Pesk
+load: STARTUP
