@@ -20,7 +20,7 @@ public class ExprZombieBreakDoors extends SimplePropertyExpression<LivingEntity,
     @Nullable
     public Boolean convert(final LivingEntity e) {
         if (!(e instanceof Zombie)) return null;
-        return ((Zombie)e).isArmsRaised();
+        return ((Zombie)e).canBreakDoors();
     }
 
     @Override

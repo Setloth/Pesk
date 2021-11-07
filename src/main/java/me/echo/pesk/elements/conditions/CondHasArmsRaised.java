@@ -9,7 +9,7 @@ public class CondHasArmsRaised extends PropertyCondition<LivingEntity> {
 
     static {
         if (Skript.classExists("org.bukkit.entity.Zombie")) {
-            register(CondHasArmsRaised.class, "arm[s] (raised|up|held)", "livingentities");
+            register(CondHasArmsRaised.class, PropertyType.HAVE,"arm[s] (raised|up|held)", "livingentities");
         }
     }
 
